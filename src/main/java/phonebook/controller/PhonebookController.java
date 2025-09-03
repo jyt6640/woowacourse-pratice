@@ -1,40 +1,69 @@
 package main.java.phonebook.controller;
 
-import main.java.phonebook.view.PhonebookView;
+import main.java.phonebook.model.Contact;
+import main.java.phonebook.view.outputView;
+import main.java.phonebook.view.inputView;
+import main.java.phonebook.service.PhonebookService;
 
 import java.util.Scanner;
 
 public class PhonebookController {
-    private final PhonebookView view;
+    private final outputView outputview;
+    private inputView inputview;
     private final Scanner sc = new Scanner(System.in);
+    private final PhonebookService service = new PhonebookService();
 
-    public PhonebookController(PhonebookView view) {
-        this.view = view;
+
+    public PhonebookController(outputView outputview, inputView inputview) {
+        this.outputview = outputview;
+        this.inputview = inputview;
     }
+
 
     public void run() {
         while (true) {
-            view.displayMenu();
+            outputview.displayMenu();
             String input = sc.nextLine();
 
             switch (input) {
                 case "1":
-                    view.showMessage("연락처 추가 기능을 선택하셨습니다.");
+                    outputview.showMessage("연락처 추가 기능을 선택하셨습니다.");
+                    addContact();
+                    break;
                 case "2":
-                    view.showMessage("연락처 조회 기능을 선택하셨습니다.");
+                    outputview.showMessage("연락처 조회 기능을 선택하셨습니다.");
+                        for (Contact contact : service.getAllContacts()) {
+                            outputview.showMessage(contact.toString());
+                        }
+                    break;
                 case "3":
-                    view.showMessage("연락처 검색 기능을 선택하셨습니다.");
+                    outputview.showMessage("연락처 검색 기능을 선택하셨습니다.");
+                    break;
                 case "4":
-                    view.showMessage("연락처 삭제 기능을 선택하셨습니다.");
+                    outputview.showMessage("연락처 삭제 기능을 선택하셨습니다.");
+                    break;
                 case "5":
                     {
-                    view.showMessage("프로그램을 종료합니다.");
+                        outputview.showMessage("프로그램을 종료합니다.");
                     return;
                 }
                 default:
-                    view.showMessage("잘못된 입력입니다. 다시 시도해주세요.");
+                    outputview.showMessage("잘못된 입력입니다. 다시 시도해주세요.");
             }
         }
     }
 
+    private void addContact() {
+        String name = inputview.promptForName();
+        String phoneNumber = inputview.promptForPhoneNumber();
+        String email = inputview.promptForEmail();
+        Contact contact = new Contact(name, phoneNumber, email);
+
+        boolean add = service.addContact(contact);
+        if (add) {
+            outputview.showMessage(name + "님의 연락처가 추가되었습니다.");
+        } else {
+            outputview.showMessage("이미 존재하는 연락처입니다.");
+        }
+    }
 }
