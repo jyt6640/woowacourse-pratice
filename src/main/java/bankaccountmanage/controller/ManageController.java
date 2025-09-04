@@ -29,18 +29,22 @@ public class ManageController {
                     addAccount();
                     break;
                 case "2":
-                    outputView.showMessage("계좌 조회 기능을 선택하셨습니다.");
-                    // 계좌 조회 로직 추가
+                    outputView.showMessage("전체 계좌 조회 기능을 선택하셨습니다.");
+                    ViewAllAccounts();
                     break;
                 case "3":
+                    outputView.showMessage("특정 계좌 조회 기능을 선택하셨습니다.");
+                    // 특정 계좌 조회 로직 추가
+                    break;
+                case "4":
                     outputView.showMessage("입금 기능을 선택하셨습니다.");
                     // 입금 로직 추가
                     break;
-                case "4":
+                case "5":
                     outputView.showMessage("출금 기능을 선택하셨습니다.");
                     // 출금 로직 추가
                     break;
-                case "5":
+                case "6":
                     outputView.showMessage("프로그램을 종료합니다.");
                     return;
                 default:
@@ -60,6 +64,15 @@ public class ManageController {
             outputView.showMessage("계좌가 성공적으로 개설되었습니다.");
         } else {
             outputView.showMessage("이미 존재하는 계좌번호입니다. 다시 시도해주세요.");
+        }
+    }
+
+    public void ViewAllAccounts() {
+        for (Account account : service.getAllAccountsService()) {
+            outputView.showMessage(account.toString());
+        }
+        if(service.getAllAccountsService().isEmpty()) {
+            outputView.showMessage("등록된 계좌가 없습니다.");
         }
     }
 }

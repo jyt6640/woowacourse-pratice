@@ -14,4 +14,8 @@ public class ManageService {
         }
         return accountSet.add(account);
     }
+
+    public Set<Account> getAllAccountsService() {
+        return accountSet;
+    }
 }

@@ -21,4 +21,9 @@ public class Account {
         Account account = (Account) o;
         return acountNumber.equals(account.acountNumber);
     }
+
+    @Override
+    public String toString() {
+        return "계좌번호: " + acountNumber + ", 예금주: " + ownerName + ", 잔액: " + balance + "원";
+    }
 }
