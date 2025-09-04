@@ -30,4 +30,9 @@ public class inputView {
         return sc.nextLine();
     }
 
+    public String promptDeleteName() {
+        System.out.print("삭제할 이름을 입력하세요: ");
+        return sc.nextLine();
+    }
+
 }

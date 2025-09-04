@@ -33,4 +33,12 @@ public class PhonebookService {
         }
         return contact;
     }
+
+    public Contact deleteContact(String name) {
+        Contact contact = searchService(name);
+        if (contact != null) {
+            contactSet.remove(contact);
+        }
+        return contact;
+    }
 }

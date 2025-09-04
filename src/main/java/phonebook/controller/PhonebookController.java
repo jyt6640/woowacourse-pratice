@@ -40,6 +40,7 @@ public class PhonebookController {
                     break;
                 case "4":
                     outputview.showMessage("연락처 삭제 기능을 선택하셨습니다.");
+                    deleteContact();
                     break;
                 case "5":
                     outputview.showMessage("연락처 수정 기능을 선택하셨습니다.");
@@ -89,6 +90,17 @@ public class PhonebookController {
         Contact editedContact = service.editContact(name, phoneNumber, email);
         if (editedContact != null) {
             outputview.showMessage(name + "님의 연락처가 수정되었습니다.");
+        } else {
+            outputview.showMessage("존재하지 않는 연락처입니다.");
+        }
+    }
+
+    private void deleteContact() {
+        String name = inputview.promptDeleteName();
+        Contact deleteContact = service.searchService(name);
+        if(deleteContact != null) {
+            service.deleteContact(name);
+            outputview.showMessage(name + "님의 연락처가 삭제되었습니다.");
         } else {
             outputview.showMessage("존재하지 않는 연락처입니다.");
         }
