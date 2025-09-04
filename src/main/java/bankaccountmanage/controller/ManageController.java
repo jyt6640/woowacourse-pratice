@@ -42,7 +42,7 @@ public class ManageController {
                     break;
                 case "5":
                     outputView.showMessage("출금 기능을 선택하셨습니다.");
-                    // 출금 로직 추가
+                    withdrawBalance();
                     break;
                 case "6":
                     outputView.showMessage("프로그램을 종료합니다.");
@@ -93,6 +93,20 @@ public class ManageController {
         if (service.searchService(accountNumber) != null) {
             outputView.showMessage("입금이 성공적으로 처리되었습니다.");
             service.depositService(accountNumber, amount);
+        } else {
+            outputView.showMessage("존재하지 않는 계좌번호입니다. 다시 시도해주세요.");
+        }
+    }
+
+    public void withdrawBalance() {
+        String accountNumber = inputView.promptForWithdrawAccount();
+        int amount = inputView.promptForWithdrawAmount();
+
+        if(service.searchService(accountNumber) != null && service.searchService(accountNumber).getBalance() >= amount) {
+            outputView.showMessage("출금이 성공적으로 처리되었습니다.");
+            service.withdrawService(accountNumber, amount);
+        } else if (service.searchService(accountNumber) != null && service.searchService(accountNumber).getBalance() < amount) {
+            outputView.showMessage("잔액이 부족합니다. 다시 시도해주세요.");
         } else {
             outputView.showMessage("존재하지 않는 계좌번호입니다. 다시 시도해주세요.");
         }

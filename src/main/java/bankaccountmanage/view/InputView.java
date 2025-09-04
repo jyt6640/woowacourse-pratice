@@ -35,4 +35,14 @@ public class InputView {
         System.out.print("입금할 금액을 입력하세요: ");
         return Integer.parseInt(sc.nextLine());
     }
+
+    public String promptForWithdrawAccount() {
+        System.out.print("출금할 계좌 번호를 입력하세요: ");
+        return sc.nextLine();
+    }
+
+    public int promptForWithdrawAmount() {
+        System.out.print("출금할 금액을 입력하세요: ");
+        return Integer.parseInt(sc.nextLine());
+    }
 }

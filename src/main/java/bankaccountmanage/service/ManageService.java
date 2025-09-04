@@ -37,4 +37,18 @@ public class ManageService {
         }
         return null;
     }
+
+    public Account withdrawService(String accountNumber, int amount) {
+        for (Account a : accountSet ) {
+            if (a.getAccountNumber().equals(accountNumber)) {
+                if(a.getBalance() < amount) {
+                    return null;
+                }
+                a.WithdrawBalance(amount);
+                return a;
+            }
+        }
+        return null;
+    }
+
 }

@@ -12,8 +12,10 @@ public class Account {
     }
 
     public String getAccountNumber() { return accountNumber; }
+    public int getBalance() { return balance; }
 
     public int depositBalance(int amount) { return balance += amount; }
+    public int WithdrawBalance(int amount) { return balance -= amount; }
 
     @Override
     public int hashCode() { return accountNumber.hashCode(); }
