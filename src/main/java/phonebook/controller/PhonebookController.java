@@ -1,20 +1,20 @@
 package main.java.phonebook.controller;
 
 import main.java.phonebook.model.Contact;
-import main.java.phonebook.view.outputView;
-import main.java.phonebook.view.inputView;
+import main.java.phonebook.view.OutputView;
+import main.java.phonebook.view.InputView;
 import main.java.phonebook.service.PhonebookService;
 
 import java.util.Scanner;
 
 public class PhonebookController {
-    private final outputView outputview;
-    private inputView inputview;
+    private final OutputView outputview;
+    private InputView inputview;
     private final Scanner sc = new Scanner(System.in);
     private final PhonebookService service = new PhonebookService();
 
 
-    public PhonebookController(outputView outputview, inputView inputview) {
+    public PhonebookController(OutputView outputview, InputView inputview) {
         this.outputview = outputview;
         this.inputview = inputview;
     }

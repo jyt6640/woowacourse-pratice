@@ -2,7 +2,7 @@ package main.java.phonebook.view;
 
 import java.util.Scanner;
 
-public class inputView {
+public class InputView {
     Scanner sc = new Scanner(System.in);
 
     public String promptForName() {
