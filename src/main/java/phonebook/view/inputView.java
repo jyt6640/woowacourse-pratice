@@ -25,4 +25,9 @@ public class inputView {
         return sc.nextLine();
     }
 
+    public String promptForEditName() {
+        System.out.print("수정할 이름을 입력하세요: ");
+        return sc.nextLine();
+    }
+
 }

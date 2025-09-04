@@ -42,6 +42,10 @@ public class PhonebookController {
                     outputview.showMessage("연락처 삭제 기능을 선택하셨습니다.");
                     break;
                 case "5":
+                    outputview.showMessage("연락처 수정 기능을 선택하셨습니다.");
+                    editContact();
+                    break;
+                case "6":
                     {
                         outputview.showMessage("프로그램을 종료합니다.");
                     return;
@@ -58,7 +62,7 @@ public class PhonebookController {
         String email = inputview.promptForEmail();
         Contact contact = new Contact(name, phoneNumber, email);
 
-        boolean add = service.addContact(contact);
+        boolean add = service.addService(contact);
         if (add) {
             outputview.showMessage(name + "님의 연락처가 추가되었습니다.");
         } else {
@@ -67,16 +71,27 @@ public class PhonebookController {
     }
 
     private void viewAllContacts() {
-        for (Contact contact : service.getAllContacts()) {
+        for (Contact contact : service.getAllContactsService()) {
             outputview.showMessage(contact.toString());
         }
     }
 
     private void foundContact() {
         String name = inputview.promptForSearch();
-        Contact foundContact = service.searchContact(name);
+        Contact foundContact = service.searchService(name);
         outputview.showContact(foundContact);
     }
 
+    private void editContact() {
+        String name = inputview.promptForEditName();
+        String phoneNumber = inputview.promptForPhoneNumber();
+        String email = inputview.promptForEmail();
+        Contact editedContact = service.editContact(name, phoneNumber, email);
+        if (editedContact != null) {
+            outputview.showMessage(name + "님의 연락처가 수정되었습니다.");
+        } else {
+            outputview.showMessage("존재하지 않는 연락처입니다.");
+        }
+    }
 
 }
