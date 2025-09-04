@@ -1,5 +1,7 @@
 package main.java.phonebook.view;
 
+import main.java.phonebook.model.Contact;
+
 public class outputView {
     public void displayMenu() {
         System.out.println("==================================================================");
@@ -10,5 +12,13 @@ public class outputView {
 
     public void showMessage(String message) {
         System.out.println(message);
+    }
+
+    public void showContact(Contact c) {
+        if (c == null) {
+            System.out.println("검색 결과가 없습니다.");
+        } else {
+            System.out.println(c.toString());
+        }
     }
 }

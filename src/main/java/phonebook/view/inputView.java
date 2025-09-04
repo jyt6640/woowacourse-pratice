@@ -20,4 +20,9 @@ public class inputView {
         return sc.nextLine();
     }
 
+    public String promptForSearch() {
+        System.out.print("검색할 이름을 입력하세요: ");
+        return sc.nextLine();
+    }
+
 }

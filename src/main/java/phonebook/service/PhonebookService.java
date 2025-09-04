@@ -15,4 +15,13 @@ public class PhonebookService {
     public Set<Contact> getAllContacts() {
         return contactSet;
     }
+
+    public Contact searchContact(String name) {
+        for (Contact c : contactSet) {
+            if (c.getName().equalsIgnoreCase(name)) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

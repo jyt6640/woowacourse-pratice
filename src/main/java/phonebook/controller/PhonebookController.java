@@ -32,12 +32,11 @@ public class PhonebookController {
                     break;
                 case "2":
                     outputview.showMessage("연락처 조회 기능을 선택하셨습니다.");
-                        for (Contact contact : service.getAllContacts()) {
-                            outputview.showMessage(contact.toString());
-                        }
+                    viewAllContacts();
                     break;
                 case "3":
                     outputview.showMessage("연락처 검색 기능을 선택하셨습니다.");
+                    foundContact();
                     break;
                 case "4":
                     outputview.showMessage("연락처 삭제 기능을 선택하셨습니다.");
@@ -66,4 +65,18 @@ public class PhonebookController {
             outputview.showMessage("이미 존재하는 연락처입니다.");
         }
     }
+
+    private void viewAllContacts() {
+        for (Contact contact : service.getAllContacts()) {
+            outputview.showMessage(contact.toString());
+        }
+    }
+
+    private void foundContact() {
+        String name = inputview.promptForSearch();
+        Contact foundContact = service.searchContact(name);
+        outputview.showContact(foundContact);
+    }
+
+
 }
