@@ -75,12 +75,20 @@ public class PhonebookController {
         for (Contact contact : service.getAllContactsService()) {
             outputview.showMessage(contact.toString());
         }
+        if (service.getAllContactsService().isEmpty()) {
+            outputview.showMessage("저장된 연락처가 없습니다.");
+        }
     }
 
     private void foundContact() {
         String name = inputview.promptForSearch();
         Contact foundContact = service.searchService(name);
-        outputview.showContact(foundContact);
+        if(foundContact != null) {
+            outputview.showMessage(name + "님의 연락처가 검색되었습니다.");
+            outputview.showContact(foundContact);
+        } else {
+            outputview.showMessage("존재하지 않는 연락처입니다.");
+        }
     }
 
     private void editContact() {
