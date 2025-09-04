@@ -18,4 +18,23 @@ public class ManageService {
     public Set<Account> getAllAccountsService() {
         return accountSet;
     }
+
+    public Account searchService(String accountNumber) {
+        for (Account a : accountSet) {
+            if (a.getAccountNumber().equals(accountNumber)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public Account depositService(String accountNumber, int amount) {
+        for (Account a : accountSet ) {
+            if (a.getAccountNumber().equals(accountNumber)) {
+                a.depositBalance(amount);
+                return a;
+            }
+        }
+        return null;
+    }
 }

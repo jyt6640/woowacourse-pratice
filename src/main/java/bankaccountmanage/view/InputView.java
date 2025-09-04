@@ -16,8 +16,23 @@ public class InputView {
         return sc.nextLine();
     }
 
-    public int pronptForAmount() {
+    public int promptForAmount() {
         System.out.print("금액을 입력하세요: ");
+        return Integer.parseInt(sc.nextLine());
+    }
+
+    public String promptForSearchAccount() {
+        System.out.print("조회할 계좌 번호를 입력하세요: ");
+        return sc.nextLine();
+    }
+
+    public String promptForDepositAccount() {
+        System.out.print("입금할 계좌 번호를 입력하세요: ");
+        return sc.nextLine();
+    }
+
+    public int promptForDepositAmount() {
+        System.out.print("입금할 금액을 입력하세요: ");
         return Integer.parseInt(sc.nextLine());
     }
 }

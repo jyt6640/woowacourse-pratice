@@ -34,11 +34,11 @@ public class ManageController {
                     break;
                 case "3":
                     outputView.showMessage("특정 계좌 조회 기능을 선택하셨습니다.");
-                    // 특정 계좌 조회 로직 추가
+                    searchAccount();
                     break;
                 case "4":
                     outputView.showMessage("입금 기능을 선택하셨습니다.");
-                    // 입금 로직 추가
+                    depositBalance();
                     break;
                 case "5":
                     outputView.showMessage("출금 기능을 선택하셨습니다.");
@@ -56,7 +56,7 @@ public class ManageController {
     public void addAccount() {
         String accountHolder = inputView.promptForAccountNumber();
         String accountNumber = inputView.promptForOwnerName();
-        int accountBalance = inputView.pronptForAmount();
+        int accountBalance = inputView.promptForAmount();
         Account account = new Account(accountHolder, accountNumber, accountBalance);
 
         boolean add = service.addService(account);
@@ -73,6 +73,28 @@ public class ManageController {
         }
         if(service.getAllAccountsService().isEmpty()) {
             outputView.showMessage("등록된 계좌가 없습니다.");
+        }
+    }
+
+    public void searchAccount() {
+        String accountNumber = inputView.promptForSearchAccount();
+        Account account = service.searchService(accountNumber);
+        if (account != null) {
+            outputView.showMessage(account.toString());
+        } else {
+            outputView.showMessage("존재하지 않는 계좌번호입니다. 다시 시도해주세요.");
+        }
+    }
+
+    public void depositBalance() {
+        String accountNumber = inputView.promptForDepositAccount();
+        int amount = inputView.promptForDepositAmount();
+
+        if (service.searchService(accountNumber) != null) {
+            outputView.showMessage("입금이 성공적으로 처리되었습니다.");
+            service.depositService(accountNumber, amount);
+        } else {
+            outputView.showMessage("존재하지 않는 계좌번호입니다. 다시 시도해주세요.");
         }
     }
 }
